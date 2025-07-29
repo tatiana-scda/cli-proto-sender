@@ -6,11 +6,11 @@ import static picocli.CommandLine.*;
 
 @Command(
         name = "health",
-        description = "Health check of command line"
+        description = "Health check of command line application"
 )
-public class HelloWorldCommand implements Runnable {
+public class HealthCheckCommand implements Runnable {
     public static void main(String[] args) {
-        CommandLine.run(new HelloWorldCommand(), args);
+        CommandLine.run(new HealthCheckCommand(), args);
     }
 
     @Override
