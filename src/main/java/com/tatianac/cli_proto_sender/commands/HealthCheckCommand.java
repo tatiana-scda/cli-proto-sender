@@ -1,9 +1,11 @@
 package com.tatianac.cli_proto_sender.commands;
 
+import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 
 import static picocli.CommandLine.*;
 
+@Slf4j
 @Command(
         name = "health",
         description = "Health check of command line application accepting count param."
@@ -19,8 +21,10 @@ public class HealthCheckCommand implements Runnable {
 
     @Override
     public void run() {
+        log.debug("Command fot health check received.");
         System.out.println("It's alive!");
         if (name != null) {
+            log.debug("Command fot health check with name {} received.", name);
             System.out.println("Hello " + name);
         }
     }
