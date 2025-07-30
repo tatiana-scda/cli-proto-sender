@@ -38,5 +38,5 @@ Set up Kafka
 
 .\kafka-server-start.bat ..\..\config\server.properties
 
-.\kafka-console-consumer.bat --topic userTopic --bootstrap-server localhost:9092
+.\kafka-console-consumer.bat --topic personTopic --bootstrap-server localhost:9092
 ```
