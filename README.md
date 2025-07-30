@@ -48,6 +48,16 @@ docker-compose -f ops/docker-compose.yaml run --rm -v C:/Users/tatia/Documents:/
 
 <img alt="Kafka UI with message on topic person" height="400" width="700" src="src/main/resources/static/send-file.png"/>
 
+For Unix-based systems like macOS for example, it's pretty much the same:
+
+```
+docker-compose -f ops/docker-compose.yaml up -d zookeeper kafka kafka-ui kafka-init
+
+docker-compose -f ops/docker-compose.yaml run --rm -v ~/Downloads/person-example.json:/app/person-example.json app send-message --file=/app/person-example.json
+```
+
+So the local machine file needs to be mounted correctly in order to be sent to the container.
+
 ### Access the UI
 
 Kafka enables us to access its UI and check the topic. It's hosted locally after running docker:
