@@ -1,35 +1,29 @@
 package com.tatianac.cli_proto_sender.commands;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
 import static picocli.CommandLine.*;
 
-@Slf4j
+@Component
 @Command(
         name = "health",
         description = "Health check of command line application accepting count param."
 )
+@Slf4j
 public class HealthCheckCommand implements Runnable {
 
-    @Option(
-            names = "--name",
-            required = false,
-            description = "Prints [name]"
-    )
+    @Option(names = "--name", description = "Prints [name]")
     String name;
 
     @Override
     public void run() {
-        log.debug("Command fot health check received.");
+        log.debug("Command for health check received.");
         System.out.println("It's alive!");
         if (name != null) {
-            log.debug("Command fot health check with name {} received.", name);
+            log.debug("Command for health check with name {} received.", name);
             System.out.println("Hello " + name);
         }
-    }
-
-    public static void main(String... args) {
-        new CommandLine(new HealthCheckCommand()).execute(args);
     }
 }

@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Component
@@ -46,7 +47,7 @@ public class SendMessage implements Runnable {
             log.debug("Person object generated: {}", person);
 
             kafkaPublisher.publish(person);
-        } catch (InvalidProtocolBufferException e) {
+        } catch (InvalidProtocolBufferException | ExecutionException | InterruptedException e) {
             log.error("Error when parsing file to proto.", e);
             throw new RuntimeException(e);
         }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ExecutionException;
+
 @Slf4j
 @Component
 public class KafkaPublisher {
@@ -16,13 +18,13 @@ public class KafkaPublisher {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void publish(Person person) {
+    public void publish(Person person) throws ExecutionException, InterruptedException {
         log.debug("Starting publish action");
         if (person == null) {
             log.error("No data found to send message.");
             throw new RuntimeException("Person is null");
         }
-        kafkaTemplate.send("personTopic", String.valueOf(person.id()), person);
+        kafkaTemplate.send("personTopic", String.valueOf(person.id()), person).get();
         log.info("Message sent to topic `personTopic`");
     }
 }
