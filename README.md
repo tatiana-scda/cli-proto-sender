@@ -37,6 +37,17 @@ docker-compose -f ops/docker-compose.yaml run --rm app send-message
 docker-compose -f ops/docker-compose.yaml run --rm app send-message --file=src/main/resources/person-example.json
 ```
 
+#### Sending files
+
+While this depend on the type of terminal and the Operational System, it's possible to mount a volume outside Docker and access
+it when running the command. An example for PowerShell on Windows is:
+
+```
+docker-compose -f ops/docker-compose.yaml run --rm -v C:/Users/tatia/Documents:/app/files app send-message --file=/app/files/person-example.json
+```
+
+<img alt="Kafka UI with message on topic person" height="400" width="700" src="src/main/resources/static/send-file.png"/>
+
 ### Access the UI
 
 Kafka enables us to access its UI and check the topic. It's hosted locally after running docker:
